@@ -10,7 +10,11 @@ class BookForm(forms.ModelForm):
 
     def save(self, *args, **kwargs):
         book = super(BookForm, self).save(*args, **kwargs)
-        book.title = "%s by %s" % (book.title, book.author.name)
+        book.title = "%s by %s (%d)" % (
+            book.title,
+            book.author.name,
+            book.author.pk,
+        )
         return book
 
 
